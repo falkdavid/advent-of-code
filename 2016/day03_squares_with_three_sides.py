@@ -6,8 +6,6 @@
 
 from aocd.models import Puzzle
 from typing import NamedTuple, List
-import re
-
 
 # https://adventofcode.com/2016/day/3
 puzzle = Puzzle(2016, 3)
