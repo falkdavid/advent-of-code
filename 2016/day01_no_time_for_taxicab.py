@@ -7,6 +7,7 @@
 from aocd.models import Puzzle
 from typing import List
 
+# https://adventofcode.com/2016/day/1
 puzzle = Puzzle(2016, 1)
 
 data = puzzle.input_data
