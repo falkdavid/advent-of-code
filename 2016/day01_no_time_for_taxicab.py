@@ -80,7 +80,8 @@ def visit_twice(directions: List[str], start_facing: str = 'N') -> Coord:
                         for a in range(1, amount + 1)]
             
             if seen_pos.intersection(set(new_pos)):
-                return list(seen_pos.intersection(new_pos))[0]
+                seen_twice = list(seen_pos.intersection(new_pos))[0]
+                return Coord(seen_twice[0], seen_twice[1])
 
             seen_pos.update(new_pos)
             current_pos.x += axis['x'][facing] * amount
@@ -89,15 +90,16 @@ def visit_twice(directions: List[str], start_facing: str = 'N') -> Coord:
                         for a in range(1, amount + 1)]
 
             if seen_pos.intersection(set(new_pos)):
-                return list(seen_pos.intersection(new_pos))[0]
+                seen_twice = list(seen_pos.intersection(new_pos))[0]
+                return Coord(seen_twice[0], seen_twice[1])
 
             seen_pos.update(new_pos)
             current_pos.y += axis['y'][facing] * amount
 
 def get_distance_seen_twice(directions: List[str]) -> int:
     end = visit_twice(directions)
-    if end:
-        return abs(end[0]) + abs(end[1])
+    assert end is not None
+    return abs(end.x) + abs(end.y)
 
 assert get_distance_seen_twice(["R8", "R4", "R4", "R8"]) == 4
 
