@@ -23,8 +23,8 @@ instructions = data.split('\n')
 
 # state machine to track movment over keypad
 alph = "UDLR"
-t_f = {'1':'1412','2':'2513','3':'3623','4':'1745',
-       '5':'2846','6':'3956','7':'4778','8':'5879','9':'6989'}
+t_f = {'1':"1412",'2':"2513",'3':"3623",'4':"1745",
+       '5':"2846",'6':"3956",'7':"4778",'8':"5879",'9':"6989"}
 
 def get_mapping(tf: Dict) -> Dict:
     return {k:{alph[i]:v[i] for i in range(len(alph))} 
@@ -71,9 +71,9 @@ print(get_code(instructions))
 
 # Update transition function for new keypad
 
-t_f = {'1':'1311','2':'2623','3':'1724','4':'4834','5':'5556',
-       '6':'2A57','7':'3B68','8':'4C79','9':'9989','A':'6AAB',
-       'B':'7DAC','C':'8CBC','D':'BDDD'}
+t_f = {'1':"1311",'2':"2623",'3':"1724",'4':"4834",'5':"5556",
+       '6':"2A57",'7':"3B68",'8':"4C79",'9':"9989",'A':"6AAB",
+       'B':"7DAC",'C':"8CBC",'D':"BDDD"}
 
 t_f_mapping = get_mapping(t_f)
 
