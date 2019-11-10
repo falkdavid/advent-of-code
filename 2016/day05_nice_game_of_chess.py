@@ -7,7 +7,7 @@
 from aocd.models import Puzzle
 from hashlib import md5
 
-# Enter year and day
+#https://adventofcode.com/2016/day/5
 puzzle = Puzzle(2016, 5)
 
 data = puzzle.input_data
