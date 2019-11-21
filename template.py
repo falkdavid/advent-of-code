@@ -5,7 +5,7 @@
 """
 
 from aocd.models import Puzzle
-
+from collections import Counter, defaultdict
 
 # Enter year and day
 puzzle = Puzzle(2016, 1)
