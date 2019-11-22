@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-    - Run the script in an ipython session using '%run <name>'
     - Make sure to 'export AOC_SESSION=<your_aoc_token>'
+    - Run the script in an ipython session using '%run <name>'
 """
 
 from aocd.models import Puzzle
+from typing import NamedTuple, List, Dict
 from collections import Counter, defaultdict
 
 # Enter year and day
