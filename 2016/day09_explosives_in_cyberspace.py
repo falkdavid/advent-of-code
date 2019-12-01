@@ -82,6 +82,8 @@ test_strings = [
     "(11x10)(6x2)(1x5)X",
     "(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN"
 ]
+
+
 assert decompress2(test_strings[0]) == 4
 assert decompress2(test_strings[1]) == 100
 assert decompress2(test_strings[2]) == 445

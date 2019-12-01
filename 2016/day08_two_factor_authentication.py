@@ -8,6 +8,8 @@ from aocd.models import Puzzle
 from collections import deque
 from typing import List
 import re 
+
+
 # https://adventofcode.com/2016/day/8
 puzzle = Puzzle(2016, 8)
 
@@ -24,10 +26,7 @@ class Screen(object):
         self.height = height
 
         self.pixels = [['.' for c in range(self.width)] 
-                            for r in range(self.height)]
-
-    def set_at(self, x: int, y: int):
-        self.pixels[x][y] = '#'
+                            for r in range(self.height)] 
 
     def __repr__(self) -> str:
         return "\n".join("".join(p) for p in self.pixels)
@@ -35,7 +34,7 @@ class Screen(object):
     def rect(self, a: int, b: int):
         for c in range(a):
             for r in range(b):
-                self.set_at(r, c)
+                self.pixels[r][c] = '#'
 
     def rotate_row(self, a: int, by: int):
         r = deque(self.pixels[a])
@@ -48,15 +47,17 @@ class Screen(object):
         for i, x in enumerate(list(c)):
             self.pixels[i][a] = x
 
-    def count_lit(self):
+    def count_lit(self) -> int:
         return sum([p == '#' for c in self.pixels for p in c])
 
 def parse_instructions(lines: List[str], screen: Screen) -> Screen:
     for l in lines:
         l = l.strip()
+        
         if "rect" in l:
             a, b = re.match(r"rect (\d+)x(\d+)", l).groups()
             screen.rect(int(a), int(b))
+
         elif "row" in l:
             a, b = re.match(r"rotate row y=(\d+) by (\d+)", l).groups()
             screen.rotate_row(int(a), int(b))
@@ -64,7 +65,6 @@ def parse_instructions(lines: List[str], screen: Screen) -> Screen:
         elif "column" in l:
             a, b = re.match(r"rotate column x=(\d+) by (\d+)", l).groups()
             screen.rotate_column(int(a), int(b))
-
 
     return screen
         
@@ -80,4 +80,4 @@ print(screen.count_lit())
 ######################################################################
 
 print(screen)
-# puzzle.answer_b = 
+# puzzle.answer_b = "AFBUPZBJPS"
