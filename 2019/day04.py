@@ -32,12 +32,7 @@ def check_passwd(passwd):
     return False
 
 def num_passwds(start, end):
-    res = 0
-    for i in range(start, end+1):
-        if check_passwd(i):
-            res += 1
-
-    return res
+    return sum([check_passwd(i) for i in range(start, end+1)])
 
 assert check_passwd(111111) == True
 assert check_passwd(223450) == False
@@ -64,12 +59,7 @@ def check_passwd2(passwd):
     return False
 
 def num_passwds2(start, end):
-    res = 0
-    for i in range(start, end+1):
-        if check_passwd2(i):
-            res += 1
-
-    return res
+    return sum([check_passwd2(i) for i in range(start, end+1)])
 
 assert check_passwd2(112233) == True
 assert check_passwd2(123444) == False
