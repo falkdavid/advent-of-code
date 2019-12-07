@@ -18,7 +18,8 @@ lines = data.split('\n')
 ######################################################################
 #   Part 1
 ######################################################################
-
+DX = {'U':0, 'D':0, 'L': -1, 'R': 1}
+DY = {'U':1, 'D':-1, 'L': 0, 'R': 0}
 def get_wires(lines):
     p = []
     for l in lines:
@@ -27,18 +28,11 @@ def get_wires(lines):
         for d in l.split(','):
             facing = d[0]
             steps = int(d[1:])
-            if facing == 'U':
-                new_p = [(x, y+i) for i in range(1, steps+1)]
-                y += steps
-            elif facing == 'D':
-                new_p = [(x, y-i) for i in range(1, steps+1)]
-                y -= steps
-            elif facing == 'R':
-                new_p = [(x+i, y) for i in range(1, steps+1)]
-                x += steps
-            elif facing == 'L':
-                new_p = [(x-i, y) for i in range(1, steps+1)]
-                x -= steps
+            dx = DX[facing]
+            dy = DY[facing]
+            new_p = [(x+i*dx, y+i*dy) for i in range(1, steps+1)]
+            x += steps*dx
+            y += steps*dy
             
             wire.extend(new_p)
         p.append(wire)
