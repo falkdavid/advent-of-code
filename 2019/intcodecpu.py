@@ -224,6 +224,18 @@ class IntcodeComputer(object):
 
         #print(self.mem)
 
+    def exec_until_output(self, num=1):
+        outs = []
+        while len(outs) < num:
+            if self.running:
+                self.exec_next()
+                out = self.get_output()
+                if out is not None:
+                    outs.append(out)
+            else:
+                break
+        return outs
+
     def init(self):
         self.isp = 0
         self.rel_base = 0
