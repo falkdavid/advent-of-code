@@ -7,40 +7,52 @@
 from aocd.models import Puzzle
 from typing import NamedTuple, List, Dict
 from collections import Counter, defaultdict
-import re
-import itertools
 
 # Enter year and day
-puzzle = Puzzle(2020, 2)
+puzzle = Puzzle(2020, 3)
 
-data = puzzle.input_data.split('\n')
+data = puzzle.input_data
+lines = data.split('\n')
 
+height = len(lines)
+width = len(lines[0])
 ######################################################################
 #   Part 1
 ######################################################################
+x = 0
 
-result = 0
-for x in data:
-    pattern, pw = x.split(": ")
-    min_, max_, letter = re.search(r'([0-9]+)-([0-9]+) ([a-z])', x).groups()
-    c = Counter(pw)
-    if c[letter] and int(min_) <= c[letter] <= int(max_):
-        result += 1
+trees = 0
+for l in lines:
+    c = l[x % width]
+    if c == '#':
+        trees += 1
+    x += 3
 
-print(result)
-# puzzle.answer_a = result
+print(trees)
+# puzzle.answer_a = trees
 
 
 ######################################################################
 #   Part 2
 ######################################################################
 
-result = 0
-for x in data:
-    pattern, pw = x.split(": ")
-    min_, max_, letter = re.search(r'([0-9]+)-([0-9]+) ([a-z])', x).groups()
-    if (pw[int(min_)-1] == letter) != (pw[int(max_)-1] == letter):
-        result += 1
+dd = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+
+
+result = 1
+for dx, dy in dd:
+    y = 0
+    x = 0
+
+    trees = 0
+    for y in range(0, len(lines), dy):
+        l = lines[y]
+        c = l[x % width]
+        if c == '#':
+            trees += 1
+        x += dx
+
+    result *= trees
 
 print(result)
-# puzzle.answer_b = result
+# puzzle.answer_b = 
