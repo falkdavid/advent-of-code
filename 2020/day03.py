@@ -55,4 +55,4 @@ for dx, dy in dd:
     result *= trees
 
 print(result)
-# puzzle.answer_b = 
+# puzzle.answer_b = result
