@@ -18,10 +18,6 @@ boardingpasses = data.split('\n')
 #   Part 1
 ######################################################################
 
-B=boardingpasses
-
-print(max([int(s.translate({ord(c):('1'if ord(c)%70>6else'0')for c in'FBRL'}),2)for s in B]))
-
 def parse_pass(boardingpass):
   row_str = boardingpass[0:7]
   f = 0
