@@ -30,14 +30,51 @@ for l in lines:
       n, col1, col2, _rest = v.strip().split(' ')
       D[key].append((n, " ".join([col1, col2])))
 
+D_inv = {}
 
-print(D)
-# puzzle.answer_a = 
+for k,v in D.items():
+  for vv in v:
+    if vv[1] not in D_inv.keys():
+      D_inv[vv[1]] = [k]
+    else:
+      D_inv[vv[1]].append(k)
+
+result = 0
+s = "shiny gold"
+
+seen = set()
+seen.add(s)
+
+queue = []
+queue.append(s)
+while queue:
+  curr = queue.pop(0)
+  if curr in D_inv.keys():
+    for v in D_inv[curr]:
+      if v not in seen:
+        seen.add(v)
+        queue.append(v)
+        result += 1
+
+print(result)
+# puzzle.answer_a = result
 
 
 ######################################################################
 #   Part 2
 ######################################################################
 
+def get_size(key,):
+  if key in D.keys():
+    if len(D[key]) == 0:
+      return 1
+    else:
+      r = 1
+      for x,v in D[key]:
+        r += int(x) * get_size(v)
+      return r
+  else:
+    return 1
 
-# puzzle.answer_b = 
+print(get_size("shiny gold"))
+# puzzle.answer_b = get_size("shiny gold")
