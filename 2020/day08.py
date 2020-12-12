@@ -23,7 +23,7 @@ class GameConsole:
     return
   def acc(self, x1):
     self.a += x1
-    return
+    returncpd
   def jmp(self, x1):
     self.ip += x1
     return
